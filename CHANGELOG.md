@@ -1,1 +1,1 @@
-
+- fix upgrade panel tooltip being larger than the panel

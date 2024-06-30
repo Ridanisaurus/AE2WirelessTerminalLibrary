@@ -17,13 +17,12 @@ public class PlayerEntityWidget extends AbstractWidget {
 
     @Override
     public void renderWidget(GuiGraphics guiGraphics, int mouseX, int mouseY, float f) {
-        InventoryScreen.renderEntityInInventoryFollowsMouse(guiGraphics, getX(), getY(), getX() + 75 - 26,
+        InventoryScreen.renderEntityInInventoryFollowsMouse(guiGraphics, getX(), getY(), getX() + 75 - 26 - 3,
                 getY() + 78 - 8, 30, 0.0625F,
                 mouseX,
                 mouseY, entity);
     }
 
     @Override
-    protected void updateWidgetNarration(NarrationElementOutput narrationElementOutput) {
-    }
+    protected void updateWidgetNarration(NarrationElementOutput narrationElementOutput) {}
 }
