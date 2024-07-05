@@ -1,1 +1,1 @@
-- fix upgrade panel tooltip being larger than the panel
+- resize the scrollbar with the upgrade panel

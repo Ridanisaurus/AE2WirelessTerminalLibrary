@@ -10,7 +10,6 @@ import net.minecraft.world.inventory.Slot;
 
 import appeng.client.gui.me.items.CraftingTermScreen;
 import appeng.client.gui.style.ScreenStyle;
-import appeng.menu.SlotSemantics;
 
 import de.mari_023.ae2wtlib.TextConstants;
 import de.mari_023.ae2wtlib.terminal.*;
@@ -20,6 +19,7 @@ import de.mari_023.ae2wtlib.wut.IUniversalTerminalCapable;
 public class WCTScreen extends CraftingTermScreen<WCTMenu> implements IUniversalTerminalCapable {
     private final IconButton magnetCardToggleButton;
     private final IconButton magnetCardMenuButton;
+    private final ScrollingUpgradesPanel upgradesPanel;
 
     public WCTScreen(WCTMenu container, Inventory playerInventory, Component title, ScreenStyle style) {
         super(container, playerInventory, title, style);
@@ -38,10 +38,13 @@ public class WCTScreen extends CraftingTermScreen<WCTMenu> implements IUniversal
         trashButton.setMessage(TextConstants.TRASH);
 
         widgets.add("player", new PlayerEntityWidget(Objects.requireNonNull(Minecraft.getInstance().player)));
-        addSingularityPanel(widgets, getMenu());
+        upgradesPanel = addUpgradePanel(widgets, getMenu());
+    }
 
-        widgets.add("scrollingUpgrades",
-                new ScrollingUpgradesPanel(menu.getSlots(SlotSemantics.UPGRADE), menu.getHost(), widgets));
+    @Override
+    public void init() {
+        super.init();
+        upgradesPanel.setMaxRows(Math.max(2, getVisibleRows()));
     }
 
     private void setMagnetMode() {
